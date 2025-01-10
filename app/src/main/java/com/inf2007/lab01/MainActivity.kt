@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//testing commit
 @Composable
 fun MainScreen() {
     Lab01Theme {
@@ -49,16 +48,16 @@ fun MainScreen() {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                //change the variable from name to username as defined above
                 UserInput(
-                    name = name,
-                    onNameChange = { name = it }
+                    name = username,
+                    onNameChange = { username = it }
                 )
 
+                //add the checking function for blank input
                 Button(
                     onClick = {
-                        if (username.isNotBlank()) {
-                            showGreeting = false
-                        }
+                        showGreeting = username.isNotBlank()
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -66,13 +65,15 @@ fun MainScreen() {
                 ) {
                     Text("Submit")
                 }
-
+                //change the greeting message
+                //Added the testTag "greetingMsg"
                 if (showGreeting) {
-                    Greeeting(
+                    Greeting(
                         name = username,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 16.dp)
+                            .testTag("greetingMsg")
                     )
 
                 }
@@ -81,6 +82,7 @@ fun MainScreen() {
     }
 }
 
+//change the TestTag
 @Composable
 fun UserInput(name: String, onNameChange: (String) -> Unit, modifier: Modifier = Modifier) {
     TextField(
@@ -89,17 +91,20 @@ fun UserInput(name: String, onNameChange: (String) -> Unit, modifier: Modifier =
         label = { Text("Enter your Name") },
         modifier = modifier
             .fillMaxWidth()
-            .testTag("UserInput")
+            .testTag("nameInput")
     )
 }
 
+//change username to name
+//change the testTag
+//fix the the capitalization of INF2007
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $username!, Welcome to InF2007!",
+        text = "Hello $name!, Welcome to INF2007!",
         modifier = Modifier
             .fillMaxWidth()
-            .testTag("greeting")
+            .testTag("greetingMsg")
     )
 }
 
