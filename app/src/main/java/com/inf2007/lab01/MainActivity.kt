@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//testing commit
 @Composable
 fun MainScreen() {
     Lab01Theme {
